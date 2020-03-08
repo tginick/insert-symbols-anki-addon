@@ -12,6 +12,7 @@ class BrowserReplacer(object):
     def __init__(self, match_list):
         self._match_list = match_list
 
+
     def on_browser_init(self, browser, mw):
         """ Set up hooks to the search box. """
         self._search_box = browser.form.searchEdit.lineEdit()
@@ -38,7 +39,9 @@ class BrowserReplacer(object):
         """ Checks whether string[i] is whitespace. """
         if i < 0:
             return False
-        return string[i].isspace()
+
+        str_bytes = bytes(string, 'utf-8')
+        return chr(str_bytes[i]).isspace()
 
     def _check_for_replacement(self, text, is_enter_pressed):
         """ 
